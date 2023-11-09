@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: currency-service
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:9000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+currency:
+  client:
+    url: "https://www.cbr.ru/scripts/XML_daily.asp"

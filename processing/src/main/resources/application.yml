@@ -1,0 +1,28 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: processing-service
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://localhost:5432/processing
+    username: postgres
+    password: masterkey
+    driverClassName: org.postgresql.Driver
+  flyway:
+    enabled: True
+    locations: classpath:db
+    url: jdbc:postgresql://localhost:5432/processing
+    user: postgres
+    password: masterkey
+service:
+  currency:
+    url: "http://localhost:8081/currency/now"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

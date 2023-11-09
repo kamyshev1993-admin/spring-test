@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: proxy
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          gateway:
+#            provider: spring
+#            client-id: gateway
+#            client-secret: secret
+#            authorization-grant-type: authorization_code
+#            client-authentication-method: client_secret_basic
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#            scope: openid,profile
+#        provider:
+#          spring:
+#            issuer-uri: http://localhost:9000
+  cloud:
+    gateway:
+      routes:
+        - id: currency-service
+          uri: lb://currency-service
+          predicates:
+            - Path=/currency/**
+        - id: processing-service
+          uri: lb://processing-service
+          predicates:
+            - Path=/processing/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
